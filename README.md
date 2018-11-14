@@ -1,5 +1,5 @@
 # keyintegration
-This plugin add system key cart for Ration dispenser, forcefiel, Combine lock in Nutscript
+This plugin add system key card for Ration dispenser, forcefiel, Combine lock in Nutscript
 
 addons require (only model):
 
