@@ -1,4 +1,4 @@
-PLUGIN.name = "Key Cart intergration"
+PLUGIN.name = "Key Card intergration"
 PLUGIN.author = "K.N.G."
 PLUGIN.desc = "Adds keycard system for Ration Dispenser, forefield, Combine lock."
 
