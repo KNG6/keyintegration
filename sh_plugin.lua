@@ -1,6 +1,6 @@
 PLUGIN.name = "Key Cart intergration"
 PLUGIN.author = "K.N.G."
-PLUGIN.desc = "Adds Combine locks to doors."
+PLUGIN.desc = "Adds keycard system for Ration Dispenser, forefield, Combine lock."
 
 if (SERVER) then
 	function PLUGIN:SaveData()
@@ -26,30 +26,23 @@ if (SERVER) then
 				data[#data + 1] = {v.door:MapCreationID(), v.door:WorldToLocal(v:GetPos()), v.door:WorldToLocalAngles(v:GetAngles()), "nut_cmblock4", v:GetLocked() == true and true or nil}
 			end
 		end
+		for k, v in pairs(ents.FindByClass("nut_forcefield")) do
+			data[#data + 1] = {v:GetPos(), v:GetAngles(), v.mode or 1,"nut_forcefield"}
+		end
 		self:setData(data)
 	end
-
-	function PLUGIN:saveForceFields()
-		local buffer = {}
-		for k, v in pairs(ents.FindByClass("nut_forcefield")) do
-			buffer[#buffer + 1] = {pos = v:GetPos(), ang = v:GetAngles(), mode = v.mode or 1,"nut_forcefield"}
-		end
-		self:setData(buffer)
-	end
-
 	function PLUGIN:LoadData()
 		local data = self:getData() or {}
-		local buffer = self:getData() or {}
 
 		for k, v in ipairs(data) do
 
 			if (v[4]=="nut_forcefield")then
 				local entity = ents.Create("nut_forcefield")
-				entity:SetPos(v.pos)
-				entity:SetAngles(v.ang)
+				entity:SetPos(v[1])
+				entity:SetAngles(v[2])
 				entity:Spawn()
-				entity.mode = v.mode or 1
-			else
+				entity.mode = v[3] or 1
+			elseif (v[4]=="nut_cmblock1" or v[4]=="nut_cmblock2" or v[4]=="nut_cmblock3" or v[4]=="nut_cmblock4") then
 				local door = ents.GetMapCreatedEntity(v[1])
 
 				if (IsValid(door) and door:isDoor()) then
