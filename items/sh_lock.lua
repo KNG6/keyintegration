@@ -11,7 +11,7 @@ ITEM.functions.Place = {
 		data.endpos = data.start + item.player:GetAimVector()*128
 		data.filter = item.player
 		
-		if (IsValid(scripted_ents.Get("nut_cmblock"):SpawnFunction(item.player, util.TraceLine(data)))) then
+		if (IsValid(scripted_ents.Get("nut_cmblock1"):SpawnFunction(item.player, util.TraceLine(data)))) then
 			item.player:EmitSound("npc/roller/mine/rmine_blades_out3.wav", 100, 90)
 		else
 			return false
