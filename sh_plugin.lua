@@ -1,4 +1,4 @@
-PLUGIN.name = "Key Card intergration"
+PLUGIN.name = "Key Cart intergration"
 PLUGIN.author = "K.N.G."
 PLUGIN.desc = "Adds keycard system for Ration Dispenser, forefield, Combine lock."
 
@@ -89,6 +89,12 @@ if (SERVER) then
 					end
 				end
 			end
+		end
+	end
+	function SCHEMA:PlayerUseDoor(client, entity)
+		local lock = entity.lock or (IsValid(entity:getDoorPartner()) and entity:getDoorPartner().lock)
+		if (client:KeyDown(IN_SPEED) and IsValid(lock)) then
+			lock:ToggleWithChecks(client)
 		end
 	end
 end
