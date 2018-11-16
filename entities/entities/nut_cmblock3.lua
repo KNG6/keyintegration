@@ -5,7 +5,7 @@ local PLUGIN = PLUGIN
 ENT.Type = "anim"
 ENT.PrintName = "Combine Lock Lv3"
 ENT.Category = "HL2 RP"
-ENT.Author = "Chessnut"
+ENT.Author = "K.N.G."
 ENT.Spawnable = true
 ENT.AdminOnly = true
 ENT.PhysgunDisable = true
@@ -89,7 +89,12 @@ if (SERVER) then
 			end
 		end)
 	end
-
+	function ENT:ToggleWithChecks(activator)
+		local character = activator:getChar()
+		if character:getInv():hasItem("cid3") or character:getInv():hasItem("cid4") then
+			self:toggle()
+		end
+	end
 	function ENT:toggle(override)
 		if (override != nil) then
 			self:SetLocked(override)
