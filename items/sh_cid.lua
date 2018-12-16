@@ -31,6 +31,6 @@ ITEM.functions.Assign = {
 }
 
 function ITEM:getDesc()
-	local description = self.desc.."\nnCette carte est assigné a "..self:getData("name", "personne")..", #"..self:getData("id", "00000").."."
+	local description = self.desc.."\nCette carte est assigné a "..self:getData("name", "personne")..", #"..self:getData("id", "00000").."."
 	return description
 end
